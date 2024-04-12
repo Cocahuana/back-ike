@@ -1,9 +1,22 @@
 const express =require("express");
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
+
+// app.use(bodyParse.urlencoded({exteded: true}));
+// app.use(bodyParse.json());
 
 
-
+app.get("/", (req, res) => {
+    const message = {
+        titulo: "Bienvenido al backend mockeable",
+        comoUsar: "Pon en la url del presente endpoint para obtener la respuesta :)",
+        endpointsDisponibles: [
+            "/users/policy/documents/ike.santander.com",
+            "/users/policy/documents/ike.banamex.com"
+        ]
+    }
+    res.status(200).json(message);
+});
 app.get("/users/policy/documents/ike.santander.com", (req, res) => {
     const santanderContent = [
         { "value": "DNI", "name": "DNI" },
@@ -13,7 +26,7 @@ app.get("/users/policy/documents/ike.santander.com", (req, res) => {
         { "value": "LIBRETA CIVICA", "name": "Libreta cívica" },
         { "value": "LIBRETA DE ENROLAMIENTO", "name": "Libreta de enrolamiento" }
     ];
-    res.json(santanderContent);
+    res.status(200).json(santanderContent);
 });
 app.get("/users/policy/documents/ike.banamex.com", (req, res) => {
     const banamexContent = [
@@ -21,7 +34,7 @@ app.get("/users/policy/documents/ike.banamex.com", (req, res) => {
         { "value": "TEST1", "name": "Test one" },
         { "value": "PASSPORT", "name": "Passport" }
     ];
-    res.json(banamexContent);
+    res.status(200).json(banamexContent);
 });
 
 app.listen(PORT, () => {
