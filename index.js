@@ -41,13 +41,13 @@ app.get( "/", ( req, res ) => {
 			"/brand-services/brand/manifest/ike.santander.com:3000",
 			"/brand-services/brand/theme/ike.banamex.com",
 			"/brand-services/brand/theme/ike.santander.com",
-			'/brand-services/brand/assets/{brand}',
+			'/brand-services/brand/theme/{brand}',
 		],
 	};
 	res.status( 200 ).json( message );
 } );
 
-app.get( '/brand-services/brand/assets/:brand', ( req, res ) => {
+app.get( '/brand-services/brand/theme/:brand', ( req, res ) => {
 	const { brand } = req.params
 	console.log( brand )
 	res.json( themes[ brand ] ?? themes.default )
