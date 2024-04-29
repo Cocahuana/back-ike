@@ -283,20 +283,20 @@ app.get( "/brand-services/brand/theme/ike.santander.com", ( req, res ) => {
 } );
 app.get( "/users/policy/documents/ike.santander.com", ( req, res ) => {
 	const santanderContent = [
-		{ value: "DNI", name: "DNI" },
-		{ value: "CUIT", name: "CUIT" },
-		{ value: "PASAPORTE", name: "Pasaporte" },
-		{ value: "CEDULA DE IDENTIDAD", name: "Cédula de identidad" },
-		{ value: "LIBRETA CIVICA", name: "Libreta cívica" },
-		{ value: "LIBRETA DE ENROLAMIENTO", name: "Libreta de enrolamiento" },
+		{ value: "DNI", name: "DNI", accountId: "santander0"},
+		{ value: "CUIT", name: "CUIT", accountId: "santander1" },
+		{ value: "PASAPORTE", name: "Pasaporte", accountId: "santander2" },
+		{ value: "CEDULA DE IDENTIDAD", name: "Cédula de identidad", accountId: "santander3" },
+		{ value: "LIBRETA CIVICA", name: "Libreta cívica", accountId: "santander4" },
+		{ value: "LIBRETA DE ENROLAMIENTO", name: "Libreta de enrolamiento", accountId: "santander5"}
 	];
 	res.status( 200 ).json( santanderContent );
 } );
 app.get( "/users/policy/documents/ike.banamex.com", ( req, res ) => {
 	const banamexContent = [
-		{ value: "ID", name: "Identification" },
-		{ value: "TEST1", name: "Test one" },
-		{ value: "PASSPORT", name: "Passport" },
+		{ value: "ID", name: "Identification", accountId: "banamex1"},
+		{ value: "TEST1", name: "Test one", accountId: "banamex2" },
+		{ value: "PASSPORT", name: "Passport", accountId: "banamex3" },
 	];
 	res.status( 200 ).json( banamexContent );
 } );
