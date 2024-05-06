@@ -49,7 +49,6 @@ app.get( "/", ( req, res ) => {
 
 app.get( '/brand-services/brand/theme/:brand', ( req, res ) => {
 	const { brand } = req.params
-	console.log( brand )
 	res.json( themes[ brand ] ?? themes.default )
 
 } )
@@ -283,18 +282,18 @@ app.get( "/brand-services/brand/theme/ike.santander.com", ( req, res ) => {
 } );
 app.get( "/users/policy/documents/ike.santander.com", ( req, res ) => {
 	const santanderContent = [
-		{ value: "DNI", name: "DNI", accountId: "santander0"},
+		{ value: "DNI", name: "DNI", accountId: "santander0" },
 		{ value: "CUIT", name: "CUIT", accountId: "santander1" },
 		{ value: "PASAPORTE", name: "Pasaporte", accountId: "santander2" },
 		{ value: "CEDULA DE IDENTIDAD", name: "Cédula de identidad", accountId: "santander3" },
 		{ value: "LIBRETA CIVICA", name: "Libreta cívica", accountId: "santander4" },
-		{ value: "LIBRETA DE ENROLAMIENTO", name: "Libreta de enrolamiento", accountId: "santander5"}
+		{ value: "LIBRETA DE ENROLAMIENTO", name: "Libreta de enrolamiento", accountId: "santander5" }
 	];
 	res.status( 200 ).json( santanderContent );
 } );
 app.get( "/users/policy/documents/ike.banamex.com", ( req, res ) => {
 	const banamexContent = [
-		{ value: "ID", name: "Identification", accountId: "banamex1"},
+		{ value: "ID", name: "Identification", accountId: "banamex1" },
 		{ value: "TEST1", name: "Test one", accountId: "banamex2" },
 		{ value: "PASSPORT", name: "Passport", accountId: "banamex3" },
 	];

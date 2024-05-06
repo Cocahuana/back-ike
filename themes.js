@@ -1,5 +1,5 @@
 const themes = {
-  'santander.brands.ike.clementine.com.ar': {
+  'sponsor1-stage.dev-pruebas.com': {
     "primary": {
       "25": "#D2D2D2",
       "50": "#A6A6A6",
@@ -60,7 +60,7 @@ const themes = {
       "default": "#FFDEDE"
     }
   },
-  'banamex.brands.ike.clementine.com.ar': {
+  'sponsor2-stage.dev-pruebas.com': {
     "primary": {
       "25": "#D2D2D2",
       "50": "#A6A6A6",
