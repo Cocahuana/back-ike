@@ -50,7 +50,6 @@ app.get( "/", ( req, res ) => {
 app.get( '/brand-services/brand/theme/:brand', ( req, res ) => {
 	const { brand } = req.params
 	res.json( themes[ brand ] ?? themes.default )
-
 } )
 app.get( "/brand-services/brand/assets/ike.banamex.com", ( req, res ) => {
 	const content = {
