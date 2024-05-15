@@ -85,6 +85,46 @@ app.get("/LOGO_UNIVERSO_HOGAR_svg", (req, res) => {
 app.get("/manual_liberty_pdf", (req, res) => {
 	res.sendFile(path.join(__dirname, "assets", "Manual de marca Liberty.pdf"));
 });
+app.get("/brand-services/brand/theme/:brand", (req, res) => {
+	const { brand } = req.params;
+	res.json(themes[brand] ?? themes.default);
+});
+app.get("/brand-services/brand/assets/ike.banamex.com", (req, res) => {
+	const content = {
+		logo: {
+			url: "https://www.banamex.com/assets/globals/img/apps/IconCiti.png",
+			type: "img",
+		},
+	};
+	res.status(200).json(content);
+});
+app.get("/brand-services/brand/assets/ike.santander.com", (req, res) => {
+	const santanderContent = {
+		logo: {
+			url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5ednd9glCeH0BP5kZGB9R86ZVSYFrt2-X6P8_i9k1xQ&s",
+			type: "img",
+		},
+	};
+	res.status(200).json(santanderContent);
+});
+app.get("/brand-services/brand/contacts/ike.banamex.com", (req, res) => {
+	const banamex = {
+		error_phone: "080012221222",
+		email: "test@banamex.com",
+		wpp: "http://wa.me/522222222",
+		phone: "521122340123",
+	};
+	res.status(200).json(banamex);
+});
+app.get("/brand-services/brand/contacts/ike.santander.com", (req, res) => {
+	const santanderContent = {
+		error_phone: "44524240",
+		email: "test@test.mx",
+		wpp: "http://wa.me/44524240",
+		phone: "44525250",
+	};
+	res.status(200).json(santanderContent);
+});
 
 app.get(
 	"/brand-services/brand/assets/sponsor2-stage.dev-pruebas.com",
