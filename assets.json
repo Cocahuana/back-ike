@@ -1,0 +1,18 @@
+{
+	"sponsor1-stage.dev-pruebas.com": {
+		"logo": {
+			"url": "https://back-ike.up.railway.app/Liberty_logo_png",
+			"type": "img"
+		},
+		"cardsHome": [],
+		"onboarding": []
+	},
+	"sponsor2-stage.dev-pruebas.com": {
+		"logo": {
+			"url": "https://back-ike.up.railway.app/LOGO_UNIVERSO_HOGAR_png",
+			"type": "img"
+		},
+		"cardsHome": [],
+		"onboarding": []
+	}
+}
