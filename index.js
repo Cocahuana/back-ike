@@ -85,6 +85,9 @@ app.get("/LOGO_UNIVERSO_HOGAR_svg", (req, res) => {
 app.get("/manual_liberty_pdf", (req, res) => {
 	res.sendFile(path.join(__dirname, "assets", "Manual de marca Liberty.pdf"));
 });
+app.get("/LOGO_IKE_png", (req, res) => {
+    res.sendFile(path.join(__dirname, "assets", "LOGO_IKE.png"));
+});
 app.get("/brand-services/brand/theme/:brand", (req, res) => {
 	const { brand } = req.params;
 	res.json(themes[brand] ?? themes.default);
