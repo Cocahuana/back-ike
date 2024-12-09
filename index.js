@@ -3,7 +3,7 @@ const themes = require("./themes");
 const app = express();
 const cors = require("cors"); // Import the cors package
 const path = require("path");
-
+const multer = require("multer");
 // const libertyLogo = require("./assets/Liberty_logo.png");
 // https://sponsor1-stage.dev-pruebas.com
 
@@ -404,6 +404,82 @@ app.get(
 		res.status(200).json(banamexContent);
 	}
 );
+
+
+
+// Configurar Multer para almacenar las imágenes en una carpeta "uploads"
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+	  cb(null, 'uploads/'); // Carpeta donde se guardarán las imágenes
+	},
+	filename: (req, file, cb) => {
+	  const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+	  cb(null, uniqueSuffix + path.extname(file.originalname)); // Nombre único para cada archivo
+	},
+  });
+  
+  // Configurar Multer
+  const upload = multer({ 
+	storage: storage,
+	fileFilter: (req, file, cb) => {
+	  // Validar el tipo de archivo
+	  const fileTypes = /jpeg|jpg|png|gif/;
+	  const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+	  const mimetype = fileTypes.test(file.mimetype);
+  
+	  if (extname && mimetype) {
+		return cb(null, true);
+	  } else {
+		cb(new Error('Solo se permiten imágenes (jpeg, jpg, png, gif)'));
+	  }
+	},
+	limits: { fileSize: 5 * 1024 * 1024 }, // Limite de 5MB
+  });
+  
+  // Middleware para manejar errores de Multer
+  app.use((err, req, res, next) => {
+	if (err instanceof multer.MulterError) {
+	  return res.status(400).json({ error: err.message });
+	} else if (err) {
+	  return res.status(400).json({ error: err.message });
+	}
+	next();
+  });
+  
+  // Ruta para cargar imágenes
+  app.post('/upload', upload.single('image'), (req, res) => {
+	try {
+	  if (!req.file) {
+		return res.status(400).json({ message: 'No se proporcionó ningún archivo' });
+	  }
+	  res.status(200).json({ 
+		message: 'Imagen cargada exitosamente',
+		filePath: `/uploads/${req.file.filename}`,
+	  });
+	} catch (error) {
+	  res.status(500).json({ error: 'Error al cargar la imagen' });
+	}
+  });
+  
+  // Servir las imágenes cargadas
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+  
+
+// Ruta para listar las imágenes
+app.get('/repositoryImages', (req, res) => {
+	try {
+	  const directoryPath = path.join(__dirname, 'uploads');
+	  fs.readdir(directoryPath, (err, files) => {
+		if (err) {
+		  return res.status(500).json({ error: 'Error al leer la carpeta de imágenes' });
+		}
+		const imagePaths = files.map((file) => `/uploads/${file}`);
+		res.status(200).json(imagePaths);
+	  });
+	} catch (error) {
+	  res.status(500).json({ error: 'Error al obtener las imágenes' });
+	}
+  });
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
