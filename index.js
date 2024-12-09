@@ -457,7 +457,7 @@ const storage = multer.diskStorage({
 		filePath: `/uploads/${req.file.filename}`,
 	  });
 	} catch (error) {
-	  res.status(500).json({ error: 'Error al cargar la imagen' });
+	  res.status(500).json(error);
 	}
   });
   
@@ -477,7 +477,7 @@ app.get('/repositoryImages', (req, res) => {
 		res.status(200).json(imagePaths);
 	  });
 	} catch (error) {
-	  res.status(500).json({ error: 'Error al obtener las imágenes' });
+	  res.status(500).json(error);
 	}
   });
 
