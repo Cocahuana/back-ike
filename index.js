@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors"); // Import the cors package
 const path = require("path");
 const multer = require("multer");
+const fs = require('fs');
 // const libertyLogo = require("./assets/Liberty_logo.png");
 // https://sponsor1-stage.dev-pruebas.com
 
