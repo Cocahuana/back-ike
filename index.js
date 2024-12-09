@@ -435,6 +435,16 @@ const storage = multer.diskStorage({
 	},
 	limits: { fileSize: 5 * 1024 * 1024 }, // Limite de 5MB
   });
+
+	// Crear la carpeta "uploads" si no existe
+	const uploadsDir = path.join(__dirname, 'uploads');
+
+	if (!fs.existsSync(uploadsDir)) {
+	fs.mkdirSync(uploadsDir, { recursive: true });
+	console.log('Carpeta "uploads" creada.');
+	} else {
+	console.log('Carpeta "uploads" ya existe.');
+	}
   
   // Middleware para manejar errores de Multer
   app.use((err, req, res, next) => {
